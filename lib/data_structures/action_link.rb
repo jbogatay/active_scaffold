@@ -20,6 +20,14 @@ module ActiveScaffold::DataStructures
         self.send(setter, v) if self.respond_to? setter
       end
     end
+	
+    attr_writer :hide_when_nested
+    def hide_when_nested
+      @hide_when_nested == true ? true : false     
+    end
+    def hide_when_nested?
+      hide_when_nested
+    end	
 
     # the action-path for this link. what page to request? this is required!
     attr_accessor :action
