@@ -20,6 +20,15 @@ module ActiveScaffold::DataStructures
         self.send(setter, v) if self.respond_to? setter
       end
     end
+    
+    attr_writer :hide_when_unauthorized
+    def hide_when_unauthorized
+      @hide_when_unauthorized ? true : false
+    end
+    def hide_when_unauthorized?
+      hide_when_unauthorized
+    end
+    
 	
     attr_writer :hide_when_nested
     def hide_when_nested
