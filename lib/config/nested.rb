@@ -9,11 +9,14 @@ module ActiveScaffold::Config
     # global level configuration
     # --------------------------
     cattr_accessor :shallow_delete
-    @@shallow_delete = false
+    @@shallow_delete = true
 
     # instance-level configuration
     # ----------------------------
     attr_accessor :shallow_delete
+    def shallow_delete
+      @shallow_delete ||= @@shallow_delete
+    end
 
     # Add a nested ActionLink
     def add_link(label, models, options={})
