@@ -61,6 +61,11 @@ module ActiveScaffold::Config
     def label
       @label ? as_(@label) : @core.label
     end
+    
+    attr_writer :always_show_search
+    def always_show_search?      
+      @always_show_search ? true : false
+    end
 
     class UserSettings < UserSettings
       # This label has alread been localized.

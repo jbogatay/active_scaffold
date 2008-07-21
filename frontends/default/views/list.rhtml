@@ -3,7 +3,17 @@
     <%= render :partial => 'list_header' %>
   </div>
   <table cellpadding="0" cellspacing="0">
-    <tbody class="before-header" id="<%= before_header_id -%>"></tbody>
+    <tbody class="before-header" id="<%= before_header_id -%>">
+        <% if active_scaffold_config.list.always_show_search? %>
+        <tr class="inline-adapter">
+            <td class="inline-adapter-cell" colspan="99" style="background-image: none; background-color: transparent;">
+                <div class="show_search-view view">
+                    <%= render :partial => 'search' %>
+                  </div>
+                </td>
+                </tr>
+         <% end %>
+    </tbody>
   </table>
   <div id="<%= active_scaffold_content_id -%>">
     <%= render :partial => 'list' %>
