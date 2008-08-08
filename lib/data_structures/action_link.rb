@@ -146,5 +146,10 @@ module ActiveScaffold::DataStructures
 
     # what type of link this is. currently supported values are :table and :record.
     attr_accessor :type
+    
+    # return the association array (for nested items) if present
+    def associations
+      @parameters && @parameters[:associations] ? @parameters[:associations] : nil
+    end
   end
 end

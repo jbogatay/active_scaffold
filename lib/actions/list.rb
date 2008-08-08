@@ -1,7 +1,7 @@
 module ActiveScaffold::Actions
   module List
     def self.included(base)
-      base.before_filter :list_authorized?, :only => [:index, :table, :update_table, :row, :list]
+      #base.before_filter :list_authorized?, :only => [:index, :table, :update_table, :row, :list]
     end
 
     def index

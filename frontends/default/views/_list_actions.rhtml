@@ -4,9 +4,9 @@
       <%= loading_indicator_tag(:action => :record, :id => record.id) %>
     </td>
     <% active_scaffold_config.action_links.each :record do |link| -%>
-      <% next unless record.action_authorized?(link.action) -%>
+      <% next unless record.action_authorized?(:action=>link.action, :origin=>'listactions', :associations=>link.associations) -%>
       <td>
-        <%= record.action_enabled?(link.action) ? render_action_link(link, url_options) : "<a class='disabled'>#{link.label}</a>" -%>
+        <%= record.action_enabled?(:action=>link.action, :origin=>'listactions',:associations=>link.associations) ? render_action_link(link, url_options) : "<a class='disabled'>#{link.label}</a>" -%>
       </td>
     <% end -%>
   </tr>
