@@ -4,11 +4,9 @@
       <%= loading_indicator_tag(:action => :record, :id => record.id) %>
     </td>
     <% active_scaffold_config.action_links.each :record do |link| -%>
-      <% next if controller.respond_to? link.security_method and !controller.send(link.security_method) -%>
-      <% auth = record.authorized_for?(:action => link.crud_type) 
-         next if !auth && link.hide_when_unauthorized? -%>
+      <% next unless record.action_authorized?(link.action) -%>
       <td>
-        <%= auth ? render_action_link(link, url_options) : "<a class='disabled'>#{link.label}</a>" -%>
+        <%= record.action_enabled?(link.action) ? render_action_link(link, url_options) : "<a class='disabled'>#{link.label}</a>" -%>
       </td>
     <% end -%>
   </tr>
