@@ -4,7 +4,8 @@
     <% active_scaffold_config.action_links.each :table do |link| -%>
 	  <% next if link.action == 'show_search' && active_scaffold_config.list.always_show_search? -%>
 	  <% next if link.hide_when_nested? && params[:nested] -%>
-      <% next if controller.respond_to? link.security_method and !controller.send(link.security_method) -%>
+    <% #next if controller.respond_to? link.security_method and !controller.send(link.security_method) -%>
+    <% next unless active_scaffold_config.model.authorized_for?(params.merge(:action=>link.action, :origin=>'listheader')) -%>
       <%= render_action_link(link, new_params) -%>
     <% end -%>
 

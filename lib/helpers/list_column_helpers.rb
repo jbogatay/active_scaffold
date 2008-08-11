@@ -43,8 +43,8 @@ module ActiveScaffold
       # TODO: move active_scaffold_inplace_edit in here?
       # TODO: we need to distinguish between the automatic links *we* create and the ones that the dev specified. some logic may not apply if the dev specified the link.
       def render_list_column(text, column, record)
-        if column.link
-          return "<a class='disabled'>#{text}</a>" unless record.authorized_for?(:action => column.link.crud_type)
+        if column.link && record.authorized_for?(:action=>column.link.action, :origin=>'renderlistcol', :associations=>column.link.associations)
+          #return "<a class='disabled'>#{text}</a>" unless record.authorized_for?(:action=>column.link.action, :origin=>'renderlistcol', :associations=>column.link.associations)
           return text if column.singular_association? and column_empty?(text)
 
           url_options = params_for(:action => nil, :id => record.id, :link => text)
